@@ -10,18 +10,18 @@
 <style>
 :root{color-scheme:dark;--bg:#1A1B1A;--panel:#232623;--line:#414941;--text:#f5f5ed;--muted:#b7c0b5;--orange:#FE5000;--brand-green:#577357;--yellow:var(--orange);--green:#a1d59e;--red:#ff8790}
 *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{background:var(--bg);color:var(--text);font:16px/1.3 system-ui,-apple-system,Segoe UI,sans-serif}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{cursor:default}button:focus-visible,input:focus-visible{outline:3px solid #ffac83;outline-offset:2px}[hidden]{display:none!important}
-.app{width:min(1320px,100%);height:100vh;height:100dvh;margin:auto;padding:max(12px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto auto;grid-template-areas:'top' 'arena' 'settings' 'foot';gap:12px;min-width:0}
-.app[data-mode=battle]{grid-template-rows:auto minmax(0,1.4fr) minmax(0,1fr) auto auto;grid-template-areas:'top' 'arena' 'battle' 'settings' 'foot'}
+.app{width:min(1320px,100%);height:100vh;height:100dvh;margin:auto;padding:max(12px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:'top' 'arena' 'foot';gap:12px;min-width:0}
+.app[data-mode=battle]{grid-template-rows:auto minmax(0,1.4fr) minmax(0,1fr) auto;grid-template-areas:'top' 'arena' 'battle' 'foot'}
 .top{grid-area:top;display:flex;justify-content:space-between;align-items:center;gap:16px;min-width:0}.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;min-width:0}.brand strong{color:var(--orange);font-weight:850}.brand-logo{width:68px;height:68px;object-fit:contain;flex:none}.modes{display:flex;gap:4px;border:1px solid var(--line);padding:4px;border-radius:10px;flex:none}.mode{border:0;border-radius:6px;background:transparent;padding:10px 18px;color:var(--muted);font-size:16px;font-weight:650}.mode[aria-pressed=true]{background:var(--orange);color:#fff}.mode:disabled{opacity:.65}
 .arena{grid-area:arena;min-width:0;min-height:0;background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--orange);border-radius:14px;padding:clamp(10px,2vh,22px);display:flex;flex-direction:column;gap:8px}.arena-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex:none;min-width:0}.eyebrow{color:var(--muted);font-size:14px;font-weight:650}.status{font-size:14px;font-weight:650;color:#ffad87;text-align:right}
-.clock-area{display:flex;flex:1;min-width:0;min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;overflow:visible}.capture{flex:none;font-size:clamp(14px,2vw,20px);font-weight:700;line-height:1.2;max-width:100%}.first-capture{font-size:14px;margin-bottom:3px}.clock{flex:none;font-family:ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',monospace;font-variant-numeric:tabular-nums;font-weight:750;font-size:clamp(28px,min(12vw,22vh),140px);line-height:1;letter-spacing:-.045em;white-space:nowrap;width:max-content;max-width:none}.clock .milliseconds{font-size:.55em;color:var(--muted);letter-spacing:-.035em}.clock.frozen{color:#c3cec0}.clock.finished,.clock.finished .milliseconds{color:var(--red)}.blink{animation:blink 1s steps(1,end) infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.clock-area{display:flex;flex:1;min-width:0;min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;overflow:visible}.capture{flex:none;font-size:clamp(14px,2vw,20px);font-weight:700;line-height:1.2;max-width:100%}.first-capture{font-size:14px;margin-bottom:3px}.clock{flex:none;font-family:ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',monospace;font-variant-numeric:tabular-nums;font-weight:750;font-size:clamp(28px,min(12vw,28vh),180px);line-height:1;letter-spacing:-.045em;white-space:nowrap;width:max-content;max-width:none}.clock .milliseconds{font-size:.55em;color:var(--muted);letter-spacing:-.035em}.clock.frozen{color:#c3cec0}.clock.finished,.clock.finished .milliseconds{color:var(--red)}.blink{animation:blink 1s steps(1,end) infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .bar{flex:none;height:4px;width:85%;max-width:750px;border-radius:2px;background:#3c453b;overflow:hidden}.bar-fill{height:100%;background:var(--orange);width:100%}.actions{display:flex;justify-content:center;gap:8px;flex:none}.primary,.secondary{border:1px solid transparent;border-radius:8px;padding:10px 20px;font-weight:750;min-height:42px;min-width:100px;font-size:16px}.primary{background:var(--orange);color:#fff}.primary:disabled{opacity:.45}.secondary{background:#343f32;color:var(--text);border-color:#577357}.secondary:hover:not(:disabled){background:#465742}.secondary:disabled{opacity:.4}.pause{border-color:#8ba386}.error{color:#ffadb4;font-size:14px;margin:0;flex:none}.error:empty{display:none}
 #battleSection{grid-area:battle;display:flex;flex-direction:column;min-height:0;min-width:0;gap:8px}.teams{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;flex:1;min-height:0}.team{min-height:0;min-width:0;border-radius:12px;border:2px solid transparent;padding:10px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;user-select:none;-webkit-user-select:none}.green{background:#344a35;color:#d0f0c9;border-color:#577357}.red{background:#5b292c;color:#ffdadc;border-color:#a45058}.team:not(:disabled):hover{filter:brightness(1.1)}.team:disabled{opacity:.55}.team.active.green{background:#577357;border-color:#a8d3a0}.team.active.red{background:#a7353f;border-color:#ff9ca2}.team.active,.team.winner{color:#fff;opacity:1}.team.winner{border-color:currentColor}.team-title{font-size:18px;font-weight:750;line-height:1.1;text-align:center;flex:none}.team-clock{flex:none;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:clamp(20px,min(4vw,7vh),58px);font-weight:750;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap;width:max-content}.team-clock .milliseconds{font-size:.65em}.team-note{font-size:14px;text-align:center;line-height:1.1;flex:none}.correction-row{display:flex;justify-content:center;flex:none}.correct{background:#802b33;color:#fff;border:1px solid #bb6067;border-radius:7px;padding:7px 14px;font-size:14px;font-weight:650;min-height:32px}.correct:hover:not(:disabled){background:#a73142}.correct:disabled{opacity:.4}
 .settings{grid-area:settings;min-width:0;border-top:1px solid var(--line);padding-top:10px}.setting-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.app[data-mode=flag] .setting-grid{grid-template-columns:minmax(0,240px)}.duration-group{min-width:0}.duration-group>label{display:block;font-size:14px;color:var(--muted);margin-bottom:5px}.duration-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 6px;max-width:190px;text-align:center}.duration-fields input{width:100%;min-width:0;min-height:32px;background:#252b24;color:#fff;border:1px solid #577357;border-radius:6px;padding:4px 6px;font-size:16px;font-variant-numeric:tabular-nums;text-align:center}.duration-fields input:disabled{opacity:.5}.duration-fields>:nth-child(1){grid-area:1/1}.duration-fields>:nth-child(2){grid-area:2/1}.duration-fields>:nth-child(3){grid-area:1/2}.duration-fields>:nth-child(4){grid-area:2/2}.unit{font-size:14px;color:var(--muted);line-height:1}
 .foot{grid-area:foot;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted);min-width:0}.sound-test{background:#293327;color:var(--text);border:1px solid #577357;border-radius:7px;padding:7px 14px;font-size:14px;font-weight:600;min-height:32px;white-space:nowrap}.sound-test:hover:not(:disabled){background:#3b4a36}.sound-test:disabled{opacity:.4}
 @media(max-width:700px){.app{gap:8px;padding:max(8px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}.top{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}.brand{font-size:16px;gap:6px}.brand-logo{width:44px;height:44px}.modes{width:100%}.mode{flex:1;padding:8px 6px;font-size:14px}.arena{padding:10px;gap:6px}.clock-area{gap:6px}.capture{font-size:14px}.first-capture{font-size:14px;margin-bottom:2px}.primary,.secondary{min-width:0;flex:1;padding:8px 6px;min-height:38px;font-size:14px}.teams{gap:8px}.team{padding:8px;gap:5px}.team-title{font-size:16px}.setting-grid{gap:8px}.duration-group>label{min-height:32px;line-height:1.1;margin-bottom:4px}.app[data-mode=flag] .duration-group>label{min-height:0}.duration-fields input{padding:4px;appearance:textfield;-moz-appearance:textfield}.duration-fields input::-webkit-inner-spin-button,.duration-fields input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.foot{justify-content:flex-end}.foot>span{display:none}}
 @media(max-height:560px){.app{gap:6px;padding-top:max(6px,env(safe-area-inset-top));padding-bottom:max(6px,env(safe-area-inset-bottom))}.brand-logo{width:36px;height:36px}.arena{padding:6px;gap:4px}.clock-area{gap:4px}.arena-top{gap:6px}.primary,.secondary{min-height:32px;padding:5px 10px;font-size:14px;min-width:0}.team{padding:6px;gap:4px}.team-title{font-size:14px}.correct,.sound-test{padding:5px 12px;min-height:28px}.settings{padding-top:6px}.duration-group>label{margin-bottom:3px}.duration-fields input{min-height:28px;padding:2px 4px}.capture,.first-capture{font-size:14px}.first-capture{margin-bottom:1px}.foot>span{display:none}}
-@media(orientation:landscape) and (max-height:650px){.app[data-mode=battle]{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto auto;grid-template-areas:'top top' 'arena battle' 'settings settings' 'foot foot';column-gap:10px}.top{display:flex;gap:8px}.brand{font-size:16px;gap:6px}.brand-logo{width:40px;height:40px}.brand>span{max-width:180px}.modes{width:auto;padding:3px;gap:2px}.mode{padding:7px 8px;font-size:14px}.setting-grid{gap:12px}.duration-group>label{min-height:0}.duration-fields{max-width:160px}.foot{justify-content:flex-end}.teams{gap:6px}.team-title{font-size:14px}}
+@media(orientation:landscape) and (max-height:650px){.app[data-mode=battle]{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:'top top' 'arena battle' 'foot foot';column-gap:10px}.top{display:flex;gap:8px}.brand{font-size:16px;gap:6px}.brand-logo{width:40px;height:40px}.brand>span{max-width:180px}.modes{width:auto;padding:3px;gap:2px}.mode{padding:7px 8px;font-size:14px}.setting-grid{gap:12px}.duration-group>label{min-height:0}.duration-fields{max-width:160px}.foot{justify-content:flex-end}.teams{gap:6px}.team-title{font-size:14px}}
 @media(orientation:landscape) and (max-height:380px){.app{padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env(safe-area-inset-right));gap:5px}.brand-logo{width:30px;height:30px}.brand{font-size:14px}.brand>span{max-width:150px}.mode{padding:6px;font-size:14px}.arena-top{align-items:flex-start}.eyebrow,.status{font-size:14px;line-height:1.05}.team-note{font-size:14px}.actions{gap:4px}.primary,.secondary{padding:5px 6px}.settings{padding-top:4px}.duration-group>label{font-size:14px;line-height:1.05}.foot .sound-test{padding:4px 10px;min-height:26px}.correction-row .correct{padding:4px 8px;min-height:26px}}
 @media(prefers-reduced-motion:reduce){.blink{animation:blink 2s steps(1,end) infinite}}
 
@@ -31,6 +31,12 @@
 @media(max-width:700px){.top-controls{width:100%}.top-controls .modes{flex:1;width:auto}.gear{width:36px;height:36px}.preferences-dialog{padding:14px;gap:14px}.preferences-dialog[open]{gap:14px}.swap-row{align-items:flex-start;flex-direction:column;gap:6px}.sound-settings{gap:12px}.sound-choices{gap:5px}.sound-choice{padding:9px 5px}.preferences-head h2{font-size:20px}}
 @media(orientation:landscape) and (max-height:650px){.top-controls{width:auto;flex:none}.top-controls .modes{flex:none}.gear{width:34px;height:34px}}
 @media(orientation:landscape) and (max-height:420px){.preferences-dialog[open]{padding:10px 14px;gap:8px}.preferences-head h2{font-size:18px}.close-preferences{width:28px;height:28px}.swap-row{flex-direction:row;align-items:center;gap:10px}.swap-teams{padding:6px 10px}.sound-settings{gap:8px}.sound-setting{display:grid;grid-template-columns:160px minmax(0,1fr);align-items:center;gap:8px}.sound-setting h3{margin:0;font-size:14px}.sound-choice{padding:7px 4px;min-height:34px}.sound-choices{gap:5px}}
+
+.preferences-dialog[data-mode=flag] .setting-grid{grid-template-columns:minmax(0,240px)}
+/* A compact two-level settings workspace; only one sound group is visible. */
+.preferences-dialog{width:min(680px,calc(100vw - 20px));max-height:calc(100dvh - 20px);padding:18px;overflow:auto}.preferences-dialog[open]{gap:12px}.settings-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;background:#232b22;border:1px solid #465b43;border-radius:9px;padding:4px}.settings-tab,.sound-type-tab{background:transparent;border:1px solid transparent;color:var(--muted);border-radius:6px;padding:8px 6px;font-size:14px;font-weight:650;min-width:0}.settings-tab[aria-selected=true]{background:var(--orange);color:#fff}.preferences-panel{min-width:0;display:flex;flex-direction:column;gap:14px}.settings-section-title{margin:0 0 12px;font-size:16px;font-weight:650}.preferences-panel .settings{border:0;padding:0;grid-area:auto}.preferences-panel .setting-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.preferences-panel .duration-group>label{min-height:32px;line-height:1.15}.preferences-panel .duration-fields{max-width:180px}.preferences-panel .duration-fields input{min-height:36px}.preferences-panel .swap-row{padding-top:12px;border-top:1px solid var(--line)}.sound-type-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.sound-type-tab{background:#293327;border-color:#577357;min-height:36px}.sound-type-tab[aria-selected=true]{background:#577357;color:#fff;border-color:#a1c89b}.sound-settings{display:block;min-width:0}.sound-setting{display:block;min-width:0}.sound-setting h3{margin:0 0 12px;font-size:16px;line-height:1.3}.sound-options-line{display:grid;grid-template-columns:minmax(0,1fr) 36px;gap:8px;align-items:start;min-width:0}.sound-choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-width:0}.sound-choice{display:flex;align-items:center;justify-content:center;min-width:0;min-height:52px;padding:8px;font-size:16px;line-height:1.25;letter-spacing:normal;text-align:center;overflow:hidden}.choice-name{display:block;max-width:100%;min-width:0;white-space:normal;word-break:normal;overflow-wrap:anywhere}.attach-sound{width:36px;min-height:36px;padding:0;background:#293327;border:1px solid #577357;border-radius:8px;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center}.attach-sound:hover:not(:disabled){background:#465742}.attach-sound:disabled{opacity:.4}.custom-sound-choice{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0;min-height:44px;background:#293327;border:1px solid #577357;border-radius:8px;padding:8px 10px;color:var(--text);font-size:14px;line-height:1.2}.custom-sound-choice[aria-pressed=true]{background:#5c321f;border-color:var(--orange);box-shadow:inset 0 0 0 1px var(--orange);color:#fff}.custom-title{flex:none;font-weight:650}.custom-filename{display:block;min-width:0;max-width:70%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}.custom-sound-choice:disabled{opacity:.4}.audio-format-note{font-size:14px;line-height:1.3;color:var(--muted);margin:0}
+@media(max-width:700px){.preferences-dialog{padding:14px}.preferences-dialog[open]{gap:10px}.preferences-panel{gap:12px}.preferences-panel .setting-grid{gap:8px}.preferences-panel .duration-group>label{font-size:14px;min-height:32px}.preferences-panel .duration-fields input{padding:4px 2px}.sound-setting h3{font-size:16px;margin-bottom:10px}.sound-choice{font-size:14px;min-height:52px;padding:7px 5px}.sound-choices{gap:7px}.preferences-panel .swap-row{gap:8px}.custom-sound-choice{padding:8px;gap:6px}.audio-format-note{font-size:14px}}
+@media(orientation:landscape) and (max-height:420px){.preferences-dialog[open]{gap:8px;padding:10px 14px}.preferences-head h2{font-size:18px}.settings-tabs{padding:3px}.settings-tab{padding:5px;min-height:28px}.preferences-panel{gap:8px}.settings-section-title{margin-bottom:6px;font-size:14px}.preferences-panel .duration-group>label{min-height:0;font-size:14px}.preferences-panel .duration-fields input{min-height:28px}.preferences-panel .swap-row{padding-top:6px}.preferences-panel .swap-teams{padding:5px 9px}.preferences-panel#soundSettingsPane{display:grid;grid-template-columns:124px minmax(0,1fr);column-gap:12px;row-gap:8px}.sound-type-tabs{grid-template-columns:minmax(0,1fr);align-content:start;gap:5px}.sound-type-tab{min-height:30px;padding:5px;font-size:14px}.sound-setting{display:block}.sound-setting h3{font-size:14px;margin:0 0 8px}.sound-options-line{grid-template-columns:minmax(0,1fr) 32px;gap:6px}.sound-choice{min-height:38px;padding:6px;font-size:14px}.sound-choices{gap:6px}.attach-sound{width:32px;min-height:32px;font-size:18px}.custom-sound-choice{min-height:32px;padding:6px 8px}.audio-format-note{grid-column:1/-1;font-size:14px}.preferences-error{font-size:14px}}
 </style>
 </head>
 <body>
@@ -49,23 +55,32 @@
   <div class="teams" id="teamButtons"><button class="team red" id="red" disabled aria-pressed="false"><span class="team-title">Красная команда</span><span class="team-clock" id="redClock" hidden></span><span class="team-note" id="redNote">Нажмите для захвата</span></button><button class="team green" id="green" disabled aria-pressed="false"><span class="team-title">Зелёная команда</span><span class="team-clock" id="greenClock" hidden></span><span class="team-note" id="greenNote">Нажмите для захвата</span></button></div>
   <div class="correction-row"><button class="correct" id="correct" disabled>Исправить ошибку</button></div>
  </section>
- <section class="settings" aria-label="Настройки времени">
+
+ <footer class="foot"><span>Старт: 3 коротких сигнала и длинный</span><button class="sound-test" id="soundTest">Проверить звук</button></footer>
+</main>
+<dialog class="preferences-dialog" id="preferencesDialog" aria-labelledby="preferencesTitle">
+ <div class="preferences-head"><h2 id="preferencesTitle">Настройки</h2><button class="close-preferences" id="closePreferences" type="button" aria-label="Закрыть настройки">×</button></div>
+ <div class="settings-tabs" role="tablist" aria-label="Раздел настроек"><button id="gameSettingsTab" class="settings-tab" type="button" role="tab" aria-selected="true" aria-controls="gameSettingsPane">Игра</button><button id="soundSettingsTab" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="soundSettingsPane" tabindex="-1">Звуки</button></div>
+ <section class="preferences-panel" id="gameSettingsPane" role="tabpanel" aria-labelledby="gameSettingsTab">
+ <section class="settings" aria-label="Настройки времени"><h3 class="settings-section-title">Время игры</h3>
   <div class="setting-grid">
    <div class="duration-group"><label for="mainMin" id="mainSettingLabel">Основной таймер</label><div class="duration-fields"><input id="mainMin" type="number" min="0" max="999" step="1" value="3" aria-label="Минуты основного таймера"><span class="unit">мин</span><input id="mainSec" type="number" min="0" max="59" step="1" value="0" aria-label="Секунды основного таймера"><span class="unit">сек</span></div></div>
    <div class="duration-group" id="greenSetting" hidden><label for="greenMin">Зелёная команда</label><div class="duration-fields"><input id="greenMin" type="number" min="0" max="999" step="1" value="1" aria-label="Минуты зелёной команды"><span class="unit">мин</span><input id="greenSec" type="number" min="0" max="59" step="1" value="0" aria-label="Секунды зелёной команды"><span class="unit">сек</span></div></div>
    <div class="duration-group" id="redSetting" hidden><label for="redMin">Красная команда</label><div class="duration-fields"><input id="redMin" type="number" min="0" max="999" step="1" value="1" aria-label="Минуты красной команды"><span class="unit">мин</span><input id="redSec" type="number" min="0" max="59" step="1" value="0" aria-label="Секунды красной команды"><span class="unit">сек</span></div></div>
   </div>
  </section>
- <footer class="foot"><span>Старт: 3 коротких сигнала и длинный</span><button class="sound-test" id="soundTest">Проверить звук</button></footer>
-</main>
-<dialog class="preferences-dialog" id="preferencesDialog" aria-labelledby="preferencesTitle">
- <div class="preferences-head"><h2 id="preferencesTitle">Настройки</h2><button class="close-preferences" id="closePreferences" type="button" aria-label="Закрыть настройки">×</button></div>
- <div class="swap-row"><button class="swap-teams" id="swapTeams" type="button">Поменять местами команды</button><p class="side-order" id="sideOrder"></p></div>
- <div class="sound-settings">
-  <section class="sound-setting" aria-labelledby="beepChoiceLabel"><h3 id="beepChoiceLabel">Выберите звук 3...2...1</h3><div class="sound-choices" role="group" aria-labelledby="beepChoiceLabel"><button class="sound-choice" id="beepChoice0" type="button" data-sound="beep" data-variant="0" aria-pressed="true">1. Стандартный</button><button class="sound-choice" id="beepChoice1" type="button" data-sound="beep" data-variant="1" aria-pressed="false">2. Высокий тон</button><button class="sound-choice" id="beepChoice2" type="button" data-sound="beep" data-variant="2" aria-pressed="false">3. Низкий тон</button><button class="sound-choice" id="beepChoice3" type="button" data-sound="beep" data-variant="3" aria-pressed="false">4. Электронный</button></div></section>
-  <section class="sound-setting" aria-labelledby="tuuChoiceLabel"><h3 id="tuuChoiceLabel">Выберите звук Старт/конец</h3><div class="sound-choices" role="group" aria-labelledby="tuuChoiceLabel"><button class="sound-choice" id="tuuChoice0" type="button" data-sound="tuu" data-variant="0" aria-pressed="true">1. Стандартный</button><button class="sound-choice" id="tuuChoice1" type="button" data-sound="tuu" data-variant="1" aria-pressed="false">2. Сирена</button><button class="sound-choice" id="tuuChoice2" type="button" data-sound="tuu" data-variant="2" aria-pressed="false">3. Гудок</button><button class="sound-choice" id="tuuChoice3" type="button" data-sound="tuu" data-variant="3" aria-pressed="false">4. Зуммер</button></div></section>
-  <section class="sound-setting" aria-labelledby="dzinChoiceLabel"><h3 id="dzinChoiceLabel">Выберите звук захвата</h3><div class="sound-choices" role="group" aria-labelledby="dzinChoiceLabel"><button class="sound-choice" id="dzinChoice0" type="button" data-sound="dzin" data-variant="0" aria-pressed="true">1. Стандартный</button><button class="sound-choice" id="dzinChoice1" type="button" data-sound="dzin" data-variant="1" aria-pressed="false">2. Низкий колокол</button><button class="sound-choice" id="dzinChoice2" type="button" data-sound="dzin" data-variant="2" aria-pressed="false">3. Гонг</button><button class="sound-choice" id="dzinChoice3" type="button" data-sound="dzin" data-variant="3" aria-pressed="false">4. Звонкий колокол</button></div></section>
- </div>
+  <p class="preferences-error" id="timeSettingsError" role="alert"></p>
+  <div class="swap-row"><button class="swap-teams" id="swapTeams" type="button">Поменять местами команды</button><p class="side-order" id="sideOrder"></p></div>
+ </section>
+ <section class="preferences-panel" id="soundSettingsPane" role="tabpanel" aria-labelledby="soundSettingsTab" hidden>
+  <div class="sound-type-tabs" role="tablist" aria-label="Какой звук настроить"><button id="beepSoundTab" class="sound-type-tab" type="button" role="tab" aria-selected="true" aria-controls="beepSoundPane">3...2...1</button><button id="tuuSoundTab" class="sound-type-tab" type="button" role="tab" aria-selected="false" aria-controls="tuuSoundPane" tabindex="-1">Старт / конец</button><button id="dzinSoundTab" class="sound-type-tab" type="button" role="tab" aria-selected="false" aria-controls="dzinSoundPane" tabindex="-1">Захват</button></div>
+  <div class="sound-settings">
+   <section class="sound-setting" id="beepSoundPane" role="tabpanel" aria-labelledby="beepSoundTab"><h3 id="beepChoiceLabel">Выберите звук 3...2...1</h3><div class="sound-options-line"><div class="sound-choices" role="group" aria-labelledby="beepChoiceLabel"><button class="sound-choice" id="beepChoice0" type="button" data-sound="beep" data-variant="0" aria-pressed="true" aria-label="1. Стандартный"><span class="choice-name">Стандартный</span></button><button class="sound-choice" id="beepChoice1" type="button" data-sound="beep" data-variant="1" aria-pressed="false" aria-label="2. Высокий тон"><span class="choice-name">Высокий тон</span></button><button class="sound-choice" id="beepChoice2" type="button" data-sound="beep" data-variant="2" aria-pressed="false" aria-label="3. Низкий тон"><span class="choice-name">Низкий тон</span></button><button class="sound-choice" id="beepChoice3" type="button" data-sound="beep" data-variant="3" aria-pressed="false" aria-label="4. Электронный"><span class="choice-name">Электронный</span></button><button class="custom-sound-choice" id="beepCustomChoice" type="button" aria-pressed="false" hidden><span class="custom-title">Мой звук</span><span class="custom-filename" id="beepCustomName"></span></button></div><button class="attach-sound" id="beepAttach" type="button" aria-label="Загрузить свой файл: Выберите звук 3...2...1" title="Загрузить WAV или MP3">📎</button><input id="beepFile" class="sound-file-input" type="file" accept=".wav,.mp3,audio/wav,audio/x-wav,audio/mpeg" hidden></div></section>
+   <section class="sound-setting" id="tuuSoundPane" role="tabpanel" aria-labelledby="tuuSoundTab" hidden><h3 id="tuuChoiceLabel">Выберите звук Старт/конец</h3><div class="sound-options-line"><div class="sound-choices" role="group" aria-labelledby="tuuChoiceLabel"><button class="sound-choice" id="tuuChoice0" type="button" data-sound="tuu" data-variant="0" aria-pressed="true" aria-label="1. Стандартный"><span class="choice-name">Стандартный</span></button><button class="sound-choice" id="tuuChoice1" type="button" data-sound="tuu" data-variant="1" aria-pressed="false" aria-label="2. Сирена"><span class="choice-name">Сирена</span></button><button class="sound-choice" id="tuuChoice2" type="button" data-sound="tuu" data-variant="2" aria-pressed="false" aria-label="3. Гудок"><span class="choice-name">Гудок</span></button><button class="sound-choice" id="tuuChoice3" type="button" data-sound="tuu" data-variant="3" aria-pressed="false" aria-label="4. Зуммер"><span class="choice-name">Зуммер</span></button><button class="custom-sound-choice" id="tuuCustomChoice" type="button" aria-pressed="false" hidden><span class="custom-title">Мой звук</span><span class="custom-filename" id="tuuCustomName"></span></button></div><button class="attach-sound" id="tuuAttach" type="button" aria-label="Загрузить свой файл: Выберите звук Старт/конец" title="Загрузить WAV или MP3">📎</button><input id="tuuFile" class="sound-file-input" type="file" accept=".wav,.mp3,audio/wav,audio/x-wav,audio/mpeg" hidden></div></section>
+   <section class="sound-setting" id="dzinSoundPane" role="tabpanel" aria-labelledby="dzinSoundTab" hidden><h3 id="dzinChoiceLabel">Выберите звук захвата</h3><div class="sound-options-line"><div class="sound-choices" role="group" aria-labelledby="dzinChoiceLabel"><button class="sound-choice" id="dzinChoice0" type="button" data-sound="dzin" data-variant="0" aria-pressed="true" aria-label="1. Стандартный"><span class="choice-name">Стандартный</span></button><button class="sound-choice" id="dzinChoice1" type="button" data-sound="dzin" data-variant="1" aria-pressed="false" aria-label="2. Низкий колокол"><span class="choice-name">Низкий колокол</span></button><button class="sound-choice" id="dzinChoice2" type="button" data-sound="dzin" data-variant="2" aria-pressed="false" aria-label="3. Гонг"><span class="choice-name">Гонг</span></button><button class="sound-choice" id="dzinChoice3" type="button" data-sound="dzin" data-variant="3" aria-pressed="false" aria-label="4. Звонкий колокол"><span class="choice-name">Звонкий колокол</span></button><button class="custom-sound-choice" id="dzinCustomChoice" type="button" aria-pressed="false" hidden><span class="custom-title">Мой звук</span><span class="custom-filename" id="dzinCustomName"></span></button></div><button class="attach-sound" id="dzinAttach" type="button" aria-label="Загрузить свой файл: Выберите звук захвата" title="Загрузить WAV или MP3">📎</button><input id="dzinFile" class="sound-file-input" type="file" accept=".wav,.mp3,audio/wav,audio/x-wav,audio/mpeg" hidden></div></section>
+  </div>
+  <p class="audio-format-note">WAV или MP3. Загрузка выбирает и воспроизводит ваш звук.</p>
+ </section>
  <p class="preferences-error" id="preferencesError" role="alert"></p>
 </dialog>
 <script>
@@ -79,7 +94,7 @@ const PRESTART_MS = 2350;
 const PREFERENCES_KEY='huntx.timer.preferences.v1';
 function loadPreferences(){
  const defaults={left:'red',sounds:{beep:0,tuu:0,dzin:0}};
- try{const saved=JSON.parse(window.localStorage.getItem(PREFERENCES_KEY)||'null');if(saved){if(['red','green'].includes(saved.left))defaults.left=saved.left;for(const kind of ['beep','tuu','dzin'])if(Number.isInteger(saved.sounds?.[kind])&&saved.sounds[kind]>=0&&saved.sounds[kind]<4)defaults.sounds[kind]=saved.sounds[kind];}}catch{}
+ try{const saved=JSON.parse(window.localStorage.getItem(PREFERENCES_KEY)||'null');if(saved){if(['red','green'].includes(saved.left))defaults.left=saved.left;for(const kind of ['beep','tuu','dzin'])if(Number.isInteger(saved.sounds?.[kind])&&saved.sounds[kind]>=0&&saved.sounds[kind]<=4)defaults.sounds[kind]=saved.sounds[kind];}}catch{}
  return defaults;
 }
 const preferences=loadPreferences();
@@ -97,6 +112,42 @@ async function loadDefaultSoundFiles(){
  return defaultSoundsPromise;
 }
 let previewSound=null, previewGeneration=0;
+const customSounds={beep:null,tuu:null,dzin:null},customSoundBuffers={};
+const loadingAudioKinds=new Set(),uploadTokens={beep:0,tuu:0,dzin:0};
+let soundDatabasePromise=null,restoreSoundsPromise=null;
+function openSoundDatabase(){
+ if(soundDatabasePromise)return soundDatabasePromise;
+ soundDatabasePromise=new Promise((resolve,reject)=>{
+  if(typeof indexedDB==='undefined'){reject(Error('Хранилище файлов недоступно'));return;}
+  const request=indexedDB.open('huntx-timer-audio',1);
+  request.onupgradeneeded=()=>{if(!request.result.objectStoreNames.contains('sounds'))request.result.createObjectStore('sounds',{keyPath:'kind'});};
+  request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);request.onblocked=()=>reject(Error('Закройте другую вкладку таймера и повторите загрузку.'));
+ }).catch(error=>{soundDatabasePromise=null;throw error;});
+ return soundDatabasePromise;
+}
+async function readSoundRecords(){const db=await openSoundDatabase();return new Promise((resolve,reject)=>{const tx=db.transaction('sounds','readonly'),request=tx.objectStore('sounds').getAll();request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);tx.onabort=()=>reject(tx.error);});}
+async function writeSoundRecord(record){const db=await openSoundDatabase();return new Promise((resolve,reject)=>{const tx=db.transaction('sounds','readwrite');tx.objectStore('sounds').put(record);tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});}
+function restoreCustomSounds(){
+ if(restoreSoundsPromise)return restoreSoundsPromise;
+ restoreSoundsPromise=(async()=>{
+  try{for(const record of await readSoundRecords())if(['beep','tuu','dzin'].includes(record.kind)&&record.blob&&typeof record.blob.arrayBuffer==='function')customSounds[record.kind]={blob:record.blob,name:record.name};}catch{}
+  for(const kind of ['beep','tuu','dzin'])if(preferences.sounds[kind]===4&&!customSounds[kind])preferences.sounds[kind]=0;
+  renderPreferences();
+ })();return restoreSoundsPromise;
+}
+async function loadCustomSoundBuffers(){
+ await restoreCustomSounds();
+ for(const kind of ['beep','tuu','dzin'])if(preferences.sounds[kind]===4&&customSounds[kind]&&!customSoundBuffers[kind])customSoundBuffers[kind]=await audio.decodeAudioData(await customSounds[kind].blob.arrayBuffer());
+}
+let settingsPage='game',soundCategory='beep';
+function chooseSettingsPage(page){
+ if(!['game','sounds'].includes(page))return;settingsPage=page;stopPreview();
+ for(const [key,prefix] of [['game','game'],['sounds','sound']]){const selected=key===page;$(prefix+'SettingsPane').hidden=!selected;$(prefix+'SettingsTab').setAttribute('aria-selected',String(selected));$(prefix+'SettingsTab').tabIndex=selected?0:-1;}
+}
+function chooseSoundCategory(kind){
+ if(!['beep','tuu','dzin'].includes(kind))return;soundCategory=kind;stopPreview();
+ for(const key of ['beep','tuu','dzin']){const selected=key===kind;$(key+'SoundPane').hidden=!selected;$(key+'SoundTab').setAttribute('aria-selected',String(selected));$(key+'SoundTab').tabIndex=selected?0:-1;}
+}
 const modeDurations={flag:{main:180000,green:60000,red:60000},battle:{main:60000,green:60000,red:60000}};
 let mode='flag', phase='idle', durations={...modeDurations.flag};
 let mainRemaining=durations.main, remaining={green:durations.green,red:durations.red};
@@ -110,7 +161,7 @@ function ctxTime(perfTime){return Math.max(audio.currentTime,perfTime/1000+audio
 async function unlockAudio(){
  if(!audio){const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)throw Error('В этом браузере недоступен звук. Попробуйте современный Chrome, Firefox или Safari.');audio=new Audio({latencyHint:'interactive'});master=audio.createGain();master.connect(audio.destination);}
  await audio.resume();if(audio.state!=='running')throw Error('Не удалось включить звук. Проверьте разрешения браузера и нажмите «Старт» ещё раз.');
- await loadDefaultSoundFiles();master.gain.value=.8;audioOffset=audio.currentTime-performance.now()/1000;
+ await loadDefaultSoundFiles();await loadCustomSoundBuffers();master.gain.value=.8;audioOffset=audio.currentTime-performance.now()/1000;
 }
 function tone(at,duration,frequency,level,type='sine',endFrequency=frequency,hold=0){
  const osc=audio.createOscillator(),gain=audio.createGain();osc.type=type;osc.frequency.setValueAtTime(frequency,at);if(endFrequency!==frequency)osc.frequency.exponentialRampToValueAtTime(endFrequency,at+duration);
@@ -119,8 +170,8 @@ function tone(at,duration,frequency,level,type='sine',endFrequency=frequency,hol
  const node={osc,gain,cancel(){try{osc.stop();}catch{}gain.disconnect();nodes.delete(node);}};nodes.add(node);osc.onended=()=>{nodes.delete(node);osc.disconnect();gain.disconnect();};return node;
 }
 function groupSound(handles){let cancelled=false;return {cancel(){if(cancelled)return;cancelled=true;for(const handle of handles)handle.cancel();}};}
-function recordedSound(kind,at){
- const source=audio.createBufferSource();source.buffer=defaultSoundBuffers[kind];source.connect(master);source.start(at);
+function recordedSound(kind,at,buffer=defaultSoundBuffers[kind]){
+ const source=audio.createBufferSource();source.buffer=buffer;source.connect(master);source.start(at);
  const handle={cancel(){try{source.stop();}catch{}source.disconnect();nodes.delete(handle);}};nodes.add(handle);source.onended=()=>{nodes.delete(handle);source.disconnect();};return handle;
 }
 function bellSound(at,base,scale=1){
@@ -149,6 +200,8 @@ const soundVariants={
  ]
 };
 function playSound(kind,at=audio.currentTime,variant=preferences.sounds[kind]){
+ if(variant===4&&customSoundBuffers[kind])return recordedSound(kind,at,customSoundBuffers[kind]);
+ if(variant===4)throw Error('Загрузите свой файл для этого звука.');
  if(variant===0&&defaultSoundBuffers[kind])return recordedSound(kind,at);
  return soundVariants[kind][variant](at);
 }
@@ -159,14 +212,21 @@ function startSignals(firstBeep){beep(ctxTime(firstBeep));beep(ctxTime(firstBeep
 function dzin(at=audio.currentTime){return playSound('dzin',at);}
 function stopPreview(){previewGeneration++;if(previewSound){previewSound.cancel();previewSound=null;}}
 function renderPreferences(){
- for(const kind of ['beep','tuu','dzin'])for(let i=0;i<4;i++){$(kind+'Choice'+i).setAttribute('aria-pressed',String(preferences.sounds[kind]===i));$(kind+'Choice'+i).disabled=['preparing','arming','resuming'].includes(phase);}
+ $('preferencesDialog').dataset.mode=mode;
+ for(const kind of ['beep','tuu','dzin']){
+  const disabled=['preparing','arming','resuming'].includes(phase)||loadingAudioKinds.has(kind);
+  for(let i=0;i<4;i++){$(kind+'Choice'+i).setAttribute('aria-pressed',String(preferences.sounds[kind]===i));$(kind+'Choice'+i).disabled=disabled;}
+  $(kind+'Attach').disabled=disabled;$(kind+'Attach').textContent=loadingAudioKinds.has(kind)?'…':'📎';
+  $(kind+'CustomChoice').hidden=!customSounds[kind];$(kind+'CustomChoice').disabled=disabled;$(kind+'CustomChoice').setAttribute('aria-pressed',String(preferences.sounds[kind]===4));
+  $(kind+'CustomName').textContent=customSounds[kind]?.name||'';$(kind+'CustomName').title=customSounds[kind]?.name||'';
+ }
  $('sideOrder').textContent=preferences.left==='red'?'Слева красная, справа зелёная':'Слева зелёная, справа красная';
 }
 function applyTeamOrder(){const left=$(preferences.left),right=$(preferences.left==='red'?'green':'red');$('teamButtons').replaceChildren(left,right);renderPreferences();requestClockFit();}
 function swapTeams(){preferences.left=preferences.left==='red'?'green':'red';savePreferences();applyTeamOrder();}
 async function selectSound(kind,variant){
- if(!Object.hasOwn(soundVariants,kind)||!Number.isInteger(variant)||variant<0||variant>3)throw Error('Неизвестный вариант звука');
- if(['preparing','arming','resuming'].includes(phase))return;
+ if(!Object.prototype.hasOwnProperty.call(soundVariants,kind)||!Number.isInteger(variant)||variant<0||variant>4||(variant===4&&!customSounds[kind]))throw Error('Неизвестный вариант звука');
+ if(['preparing','arming','resuming'].includes(phase)||loadingAudioKinds.has(kind))return;
  preferences.sounds[kind]=variant;savePreferences();renderPreferences();$('preferencesError').textContent='';
  stopPreview();const token=previewGeneration,gameToken=generation;
  try{
@@ -174,6 +234,23 @@ async function selectSound(kind,variant){
   advance();if(kind==='tuu'&&phase==='running')scheduleEnd(active?teamDeadline:mainDeadline);
   previewSound=playSound(kind,audio.currentTime+.03,variant);
  }catch(e){if(token===previewGeneration)$('preferencesError').textContent=e.message;}
+}
+async function uploadCustomSound(kind,file){
+ if(!['beep','tuu','dzin'].includes(kind)||!file)return false;
+ if(['preparing','arming','resuming'].includes(phase))return false;
+ if(!/\.(wav|mp3)$/i.test(file.name||'')){$('preferencesError').textContent='Выберите файл WAV или MP3.';return false;}
+ const token=++uploadTokens[kind];loadingAudioKinds.add(kind);$('preferencesError').textContent='';setControls();
+ try{
+  await unlockAudio();const buffer=await audio.decodeAudioData(await file.arrayBuffer());if(token!==uploadTokens[kind])return false;
+  const record={kind,blob:file,name:file.name};let persisted=true;
+  try{await writeSoundRecord(record);}catch{persisted=false;}
+  if(token!==uploadTokens[kind])return false;
+  customSounds[kind]={blob:file,name:file.name};customSoundBuffers[kind]=buffer;loadingAudioKinds.delete(kind);setControls();
+  await selectSound(kind,4);
+  if(!persisted)$('preferencesError').textContent='Звук загружен для этой сессии. Браузер не разрешил сохранить файл.';
+  return true;
+ }catch(e){if(token===uploadTokens[kind])$('preferencesError').textContent='Не удалось прочитать звук. Выберите исправный WAV или MP3.';return false;}
+ finally{if(token===uploadTokens[kind]){loadingAudioKinds.delete(kind);setControls();}}
 }
 function cancelDeadline(){if(deadlineSound){deadlineSound.cancel();deadlineSound=null;}}
 function scheduleEnd(deadline){cancelDeadline();deadlineSound=tuu(ctxTime(deadline));}
@@ -186,7 +263,7 @@ function values(){
  }return result;
 }
 function isBusy(){return ['preparing','running','arming','paused','resuming'].includes(phase);}
-function setControls(){const busy=isBusy();$('start').disabled=busy;durationInputs.forEach(el=>el.disabled=busy);modeButtons.forEach(el=>el.disabled=busy);$('soundTest').disabled=busy;$('pause').disabled=phase!=='running'&&phase!=='paused';$('pause').textContent=phase==='paused'?'Запуск':'Пауза';$('correct').disabled=mode!=='battle'||!['running','paused'].includes(phase)||!lastCapture;for(const team of ['green','red'])$(team).disabled=phase!=='running'||mode!=='battle';renderPreferences();}
+function setControls(){const busy=isBusy();$('start').disabled=busy||loadingAudioKinds.size>0;durationInputs.forEach(el=>el.disabled=busy);modeButtons.forEach(el=>el.disabled=busy);$('soundTest').disabled=busy||loadingAudioKinds.size>0;$('pause').disabled=phase!=='running'&&phase!=='paused';$('pause').textContent=phase==='paused'?'Запуск':'Пауза';$('correct').disabled=mode!=='battle'||!['running','paused'].includes(phase)||!lastCapture;for(const team of ['green','red'])$(team).disabled=phase!=='running'||mode!=='battle';renderPreferences();}
 function showCapture(){
  const leader=active||(endedBy==='green'||endedBy==='red'?endedBy:null);
  $('capture').hidden=!firstTeam;
@@ -207,7 +284,7 @@ function fitClocks(){
  }
  const area=document.querySelector('.clock-area'),gap=parseFloat(getComputedStyle(area).rowGap)||0;
  const captureHeight=$('capture').hidden?0:$('capture').offsetHeight;
- sizeNumber($('mainClock'),area.clientHeight-captureHeight-4-gap*($('capture').hidden?1:2),area.clientWidth,140);
+ sizeNumber($('mainClock'),area.clientHeight-captureHeight-4-gap*($('capture').hidden?1:2),area.clientWidth,180);
  for(const team of ['green','red']){
   const button=$(team),style=getComputedStyle(button),teamGap=parseFloat(style.rowGap)||0;
   const title=button.querySelector('.team-title'),note=$(team+'Note');
@@ -253,12 +330,12 @@ function loop(){advance();render();if(phase==='preparing'||phase==='running')fra
 function startHeartbeat(){if(heartbeat)return;try{const blob=new Blob(['setInterval(()=>postMessage(0),20)'],{type:'application/javascript'});const url=URL.createObjectURL(blob);heartbeat=new Worker(url);URL.revokeObjectURL(url);heartbeat.onmessage=()=>advance();}catch{heartbeat=setInterval(()=>advance(),20);}}
 function reset(){
  generation++;phase='idle';cancelAnimationFrame(frame);stopAudio();releaseWake();
- try{durations=values();modeDurations[mode]={...durations};$('error').textContent='';}catch(e){$('error').textContent=e.message;}
+ try{durations=values();modeDurations[mode]={...durations};$('error').textContent='';$('timeSettingsError').textContent='';}catch(e){$('error').textContent=e.message;$('timeSettingsError').textContent=e.message;}
  mainRemaining=durations.main;remaining={green:durations.green,red:durations.red};active=null;captured=false;firstTeam=null;lastCapture=null;endedBy=null;seen={green:false,red:false};
  showCapture();$('status').textContent='Готов к старту';$('start').textContent='Старт';setControls();render();requestClockFit();
 }
 async function start(){
- if(isBusy())return;
+ if(isBusy()||loadingAudioKinds.size>0)return;
  try{durations=values();}catch(e){$('error').textContent=e.message;return;}
  reset();const token=++generation;phase='arming';setControls();$('status').textContent='Включение звука';
  try{await unlockAudio();if(token!==generation)return;}catch(e){if(token!==generation)return;phase='idle';$('status').textContent='Готов к старту';$('error').textContent=e.message;setControls();return;}
@@ -323,6 +400,18 @@ $('closePreferences').addEventListener('click',()=>$('preferencesDialog').close(
 $('preferencesDialog').addEventListener('close',stopPreview);
 $('preferencesDialog').addEventListener('click',event=>{if(event.target===$('preferencesDialog')){const rect=$('preferencesDialog').getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)$('preferencesDialog').close();}});
 $('swapTeams').addEventListener('click',swapTeams);
+for(const [page,id] of [['game','gameSettingsTab'],['sounds','soundSettingsTab']]){
+ $(id).addEventListener('click',()=>chooseSettingsPage(page));
+ $(id).addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();const next=event.key==='Home'?'game':event.key==='End'?'sounds':settingsPage==='game'?'sounds':'game';chooseSettingsPage(next);$(next==='game'?'gameSettingsTab':'soundSettingsTab').focus();}});
+}
+for(const kind of ['beep','tuu','dzin']){
+ $(kind+'SoundTab').addEventListener('click',()=>chooseSoundCategory(kind));
+ $(kind+'SoundTab').addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();const kinds=['beep','tuu','dzin'];let index=kinds.indexOf(soundCategory);index=event.key==='Home'?0:event.key==='End'?2:(index+(event.key==='ArrowRight'?1:2))%3;chooseSoundCategory(kinds[index]);$(kinds[index]+'SoundTab').focus();}});
+ $(kind+'Attach').addEventListener('click',()=>$(kind+'File').click());
+ $(kind+'File').addEventListener('change',async()=>{const input=$(kind+'File'),file=input.files?.[0];if(file)await uploadCustomSound(kind,file);input.value='';});
+ $(kind+'CustomChoice').addEventListener('click',()=>selectSound(kind,4));
+}
+
 for(const kind of ['beep','tuu','dzin'])for(let i=0;i<4;i++)$(kind+'Choice'+i).addEventListener('click',()=>selectSound(kind,i));
 modeButtons.forEach(el=>el.addEventListener('click',()=>chooseMode(el.dataset.mode)));
 $('start').addEventListener('click',start);$('reset').addEventListener('click',reset);$('correct').addEventListener('click',correctCapture);$('pause').addEventListener('click',togglePause);
@@ -350,7 +439,7 @@ if(typeof ResizeObserver!=='undefined'){
  window.addEventListener('resize',requestClockFit);
  document.fonts?.ready.then(requestClockFit);
 }
-applyTeamOrder();setControls();render();requestClockFit();
+applyTeamOrder();setControls();render();requestClockFit();void restoreCustomSounds();
 </script>
 </body>
 </html>
